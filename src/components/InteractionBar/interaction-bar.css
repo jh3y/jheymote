@@ -5,7 +5,7 @@
   gap: 0.25rem;
   flex-wrap: wrap;
   padding: 0;
-  margin: 0;
+  margin: 0 auto;
   list-style-type: none;
   display: none;
 }
@@ -19,11 +19,17 @@
 
 .interaction {
   position: relative;
+  padding: 0;
 }
 
 .interaction__interaction {
-  display: inline-block;
+  display: grid;
+  place-items: center;
   position: absolute;
+  padding: 0;
+  width: 48px;
+  height: 48px;
+  overflow: hidden;
   top: 50%;
   left: 50%;
   pointer-events: none;

@@ -26,13 +26,13 @@ class Remote {
     const that = this;
     that.elements = {};
     // Intro Dialog
-    that.elements.introDialog = that.element.querySelector("dialog.intro");
+    that.elements.introDialog = document.body.querySelector("dialog.intro");
     that.elements.closeIntro =
       that.elements.introDialog.querySelector("button");
     that.elements.introDialogChoice =
       that.elements.introDialog.querySelector("#show");
     // Messaging Dialog
-    that.elements.messageDialog = that.element.querySelector("dialog.message");
+    that.elements.messageDialog = document.body.querySelector("dialog.message");
     that.elements.messageForm =
       that.elements.messageDialog.querySelector("form");
     that.elements.cancelMessage =
@@ -90,7 +90,8 @@ class Remote {
     });
     // Open messaging dialog
     that.elements.messageDialogOpener.addEventListener("click", () =>
-      that.elements.messageDialog.showModal()
+      // that.elements.messageDialog.showModal()
+      that.elements.messageDialog.show()
     );
     // Store name in localStorage
     that.elements.messageName.addEventListener("input", () => {
@@ -152,7 +153,8 @@ class Remote {
       !window.localStorage.getItem("jhey-remote-show-intro") ||
       window.localStorage.getItem("jhey-remote-show-intro") === "false"
     ) {
-      that.elements.introDialog.showModal();
+      // that.elements.introDialog.showModal();
+      that.elements.introDialog.show();
     }
   }
   async connect() {
