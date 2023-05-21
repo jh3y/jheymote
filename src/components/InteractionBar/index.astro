@@ -1,0 +1,17 @@
+---
+import './interaction-bar.css';
+const { actionMap, className } = Astro.props
+---
+<ul class={`interaction-bar ${className}`}>
+  {actionMap && Object.keys(actionMap).map(interactionKey => {
+    const { emoji, enabled, label } = actionMap[interactionKey]
+    return (
+      <li>
+        <button {...(enabled !== undefined && {'data-interaction-toggle': true.toString() })} data-interaction-key={interactionKey} class="interaction-bar__interaction interaction">
+          <span class="interaction__emoji" aria-hidden="true">{emoji}</span>
+          <span class="interaction__label sr-only">{label}</span>
+        </button>
+      </li>
+    )
+  })}
+</ul>

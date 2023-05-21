@@ -1,0 +1,280 @@
+@import 'normalize.css';
+
+*,
+*:after,
+*:before {
+  box-sizing: border-box;
+  outline-color: red;
+}
+
+dialog::backdrop {
+  background: hsl(0 0% 10% / 0.5);
+  backdrop-filter: blur(2px);
+}
+
+:root {
+  --color: hsl(0 0% 10%);
+}
+html {
+  overflow: hidden;
+}
+
+html * {
+  accent-color: #FF0000;
+  color: var(--color);
+}
+
+body {
+  color: red;
+  display: grid;
+  place-items: center;
+  min-height: 100vh;
+  gap: 1rem;
+  align-content: center;
+  font-family: sans-serif, system-ui;
+  margin: 0;
+  background: hsl(0 0% 98%);
+  width: 100vw;
+  overflow-x: hidden;
+}
+
+:where(input, textarea, dialog) {
+  border-radius: 6px;
+}
+
+main {
+  height: 100vh;
+  display: grid;
+  place-items: center;
+  position: relative;
+  align-items: center;
+}
+
+form {
+  display: grid;
+  gap: 1rem;
+}
+
+/* Pinched from the default input styles */
+textarea {
+  border-bottom-color: rgb(118, 118, 118);
+  border-bottom-left-radius: 6px;
+  border-bottom-right-radius: 6px;
+  border-bottom-style: inset;
+  border-bottom-width: 2px;
+  border-image-outset: 0;
+  border-image-repeat: stretch;
+  border-image-slice: 100%;
+  border-image-source: none;
+  border-image-width: 1;
+  border-left-color: rgb(118, 118, 118);
+  border-left-style: inset;
+  border-left-width: 2px;
+  border-right-color: rgb(118, 118, 118);
+  border-right-style: inset;
+  border-right-width: 2px;
+  border-top-color: rgb(118, 118, 118);
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
+  border-top-style: inset;
+  border-top-width: 2px;
+}
+
+.reactions {
+  gap: 0.25rem;
+  max-width: min(40ch, 100% - 2rem);
+}
+
+dialog button {
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  font-weight: bold;
+}
+
+.form-group {
+  display: grid;
+  gap: 0.25rem;
+}
+
+.signature {
+  width: 160px;
+  display: block;
+  margin: 1rem auto;
+}
+
+:where(input, textarea) {
+  padding: 0.5rem 1rem;
+}
+
+.tweet-link {
+  width: 60px;
+  aspect-ratio: 1;
+  position: fixed;
+  bottom: 1rem;
+  left: 1rem;
+  display: grid;
+  place-items: center;
+}
+
+.tweet-link svg {
+  fill: #1da1f2;
+  width: 75%;
+}
+
+.intro[open] {
+  display: grid;
+}
+
+[for=show] {
+  opacity: 0.6;
+}
+
+button {
+  transition: opacity 0.25s;
+}
+
+button[disabled] {
+  opacity: 0.25;
+}
+
+.intro__actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.choice {
+  display: flex;
+  gap: 0.5rem;
+}
+
+p {
+  max-inline-size: 60ch;
+  margin: 0 auto;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+.watermark-bear {
+  --base-coat: black;
+  position: fixed;
+  top: 1rem;
+  left: 100%;
+  width: 50vmin;
+  transform: translateX(-50%);
+  opacity: 0.45;
+  z-index: -1;
+}
+
+.messaging {
+  position: fixed;
+  bottom: 1rem;
+  display: flex;
+  align-items: center;
+  right: 1rem;
+  gap: 1rem;
+}
+
+#live {
+  width: 60px;
+  border-radius: 6px;
+  aspect-ratio: 1;
+  display: grid;
+  place-items: center;
+}
+
+#live svg {
+  width: 75%;
+  stroke-width: 2;
+}
+
+dialog {
+  width: 100%;
+  max-width: 340px;
+}
+
+.message__actions {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: flex-end;
+}
+
+[type="submit"] {
+  background: hsl(140 80% 35%);
+  color: hsl(0 0% 96%);
+}
+
+.watermark-bear__eyes {
+  transform-box: fill-box;
+  transform-origin: 50% 50%;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .watermark-bear__eyes {
+    animation: blink 6s -2s infinite;
+  }
+  dialog.intro {
+    animation: drop-in 0.25s;
+  }
+  dialog.message {
+    animation: slide-up 0.25s;
+  }
+  dialog::backdrop {
+    animation: fade-in 0.25s;
+  }
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+}
+
+@keyframes drop-in {
+  0% {
+    translate: 0 -100vh;
+    scale: 0.5;
+  }
+}
+@keyframes slide-up {
+  0% {
+    translate: 0 100vh;
+    scale: 0.5;
+  }
+}
+
+@keyframes blink {
+  0%, 46%, 48%, 50%, 100% {
+    scale: 1 1;
+  }
+  47%, 49% {
+    scale: 1 0.01;
+  }
+}
+
+@media(prefers-color-scheme: dark) {
+  .watermark-bear {
+    --base-coat: white;
+  }
+  :root {
+    --color: hsl(0 0% 96%);
+  }
+  body {
+    background: hsl(0 0% 8%);
+  }
+  :is(button, input, textarea) {
+    background: hsl(0 0% 20%);
+  }
+  dialog {
+    background: hsl(0 0% 30%);
+  }
+}

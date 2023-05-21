@@ -1,0 +1,144 @@
+---
+import './remote.css'
+import { reactionMap } from '../scripts/interactions/interaction-map.js'
+import InteractionBar from '../components/InteractionBar/index.astro'
+---
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="theme-color" content="#FF0000" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Project Terrace Remote</title>
+  </head>
+  <body>
+    <main class="remote">
+      <InteractionBar actionMap={reactionMap} className="reactions" />
+      <dialog class="remote__intro intro">
+        <h2>Hey!</h2>
+        <p>This is the companion remote for my talks.</p>
+        <ul>
+          <li>Fire a reaction for what you see on stage.</li>
+          <li>Leave a live message or question. These will show on stage.</li>
+        </ul>
+        <p>Thanks for letting me speak to you today!</p>
+        <svg
+          aria-hidden="true"
+          class="signature"
+          stroke="currentColor"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 271 209"
+        >
+          <title>Jhey</title>
+          <path
+            d="M144.745 123.82c1.907-1.258-3.266-2.199-4.184-2.418-4.076-.973-15.825-2.609-16.141 4.319-.725 15.907 36.347 5.736 16.072-3.986M102.952 112.797c-5.6848 0-6.2149 7.73-.728 7.12 6.139-.682 3.185-9.905-1.861-6.877M170.025 108.347c-1.398-2.796-7.244 2.284-4.531 6.23 2.713 3.946 8.442-.486 6.149-4.612-.608-1.094-3.096-2.133-4.288-1.537M117.998 100.704c0-9.5524-14.086-13.3378-21.4395-11.3323-11.7769 3.2119-15.927 9.6813-15.927 21.1333M187.183 101.246C182.107 82.5407 155.739 77.9455 151.5 99"
+            stroke-width="5"
+            stroke-miterlimit="10"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          ></path>
+          <path
+            d="M40.3725 26.8984C58.6558 41.1564 141.659 43.1867 128.248 5.48254c-.337-.94488-1.163-3.24224-2.31-3.47304-1.224-.24653-4.009 4.38498-4.311 4.81425C100.965 36.1863 95.2641 73.5992 74.5923 102.644c-10.8878 15.298-59.8032 43.034-69.03244 10.837C-17.5939 32.705 78.7483 76.0672 105.741 67.4678c14.016-4.4657 19.556-16.7853 27.09-28.3056 2.387-3.6496 4.797-14.5469 7.212-10.9155 4.728 7.1114-20.401 41.6294-24.484 50.2225-4.6 9.679 13.669-31.7231 21.237-24.1359 9.433 9.4564-8.56 28.4026 16.571 7.3471 4.267-3.5745 13.215-15.2775 7.666-14.8349-7.056.563-19.468 20.1743-9.348 23.1872 9.846 2.9308 24.354-31.3131 22.327-21.2426-1.003 4.9789-5.669 18.5794 1.966 20.1168 10.559 2.1259 15.596-33.041 21.559-24.071C240.356 109.24 81.7126 283.324 50.2184 167.261 25.2159 75.1229 240.563 89.2082 268.88 137.08"
+            stroke-width="5"
+            stroke-miterlimit="10"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          ></path>
+        </svg>
+        <div class="intro__actions">
+          <div class="choice">
+            <label for="show">Don't show again</label>
+            <input type="checkbox" id="show"/>
+          </div>
+          <button>Close</button>
+        </div>
+      </dialog>
+      <div class="remote__messaging messaging">
+        <button id="live">
+          <svg
+            aria-hidden="true"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M20.25 8.511c.884.284 1.5 1.128 1.5 2.097v4.286c0 1.136-.847 2.1-1.98 2.193-.34.027-.68.052-1.02.072v3.091l-3-3c-1.354 0-2.694-.055-4.02-.163a2.115 2.115 0 01-.825-.242m9.345-8.334a2.126 2.126 0 00-.476-.095 48.64 48.64 0 00-8.048 0c-1.131.094-1.976 1.057-1.976 2.192v4.286c0 .837.46 1.58 1.155 1.951m9.345-8.334V6.637c0-1.621-1.152-3.026-2.76-3.235A48.455 48.455 0 0011.25 3c-2.115 0-4.198.137-6.24.402-1.608.209-2.76 1.614-2.76 3.235v6.226c0 1.621 1.152 3.026 2.76 3.235.577.075 1.157.14 1.74.194V21l4.155-4.155"
+            />
+          </svg>
+          <span class="sr-only">Send Live Message</span>
+        </button>
+        <dialog class="message">
+          <form>
+            <div class="form-group">
+              <label for="name">Name/Handle (optional)</label>
+              <input id="name" type="text" name="name" />
+            </div>
+            <div class="form-group">
+              <label for="msg">Message</label>
+              <textarea id="msg" required></textarea>
+            </div>
+            <div class="message__actions">
+              <button type="button" class="cancel">Cancel</button>
+              <button type="submit">Send</button>
+            </div>
+          </form>
+        </dialog>
+      </div>
+    </main>
+    <a
+      class="tweet-link"
+      href="https://twitter.com/intent/tweet?text=I%20attended%20@jh3yy's%20talk at <Insert Event Name>!"
+      target="_blank"
+    >
+      <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <title>Twitter</title>
+        <path
+          d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"
+        />
+      </svg>
+      <span class="sr-only">Twitter</span>
+    </a>
+    <svg
+      class="watermark-bear"
+      viewBox="0 0 793 468"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M100.937 244.397C49.2932 231.644 11 185.005 11 129.422C11 64.0195 64.0195 11 129.422 11C175.508 11 215.445 37.325 235.016 75.7579C273.571 54.9524 317.697 43.1437 364.581 43.1437H428.868C475.541 43.1437 519.48 54.8465 557.912 75.4777C577.534 37.1971 617.389 11 663.362 11C728.765 11 781.785 64.0195 781.785 129.422C781.785 184.782 743.798 231.27 692.469 244.241"
+        stroke="var(--base-coat)"
+        stroke-width="21"
+        stroke-linejoin="round"
+      />
+      <rect
+        x="253.112"
+        y="228.5"
+        width="284.056"
+        height="42.5905"
+        fill="#FF1E1E"
+      />
+      <path
+        fill-rule="evenodd"
+        clip-rule="evenodd"
+        d="M613.051 96.1181C670.715 142.386 703.111 215.526 703.111 280.959L504.955 280.959V240.491C504.955 218.952 487.494 201.491 465.955 201.491L324.324 201.491C302.785 201.491 285.324 218.952 285.324 240.491V280.959L88.1448 280.959C88.1448 215.526 120.54 142.386 178.204 96.1181C235.869 49.8504 314.078 23.8574 395.628 23.8574C477.177 23.8574 555.387 49.8504 613.051 96.1181Z"
+        fill="var(--base-coat)"
+      />
+      <g class="watermark-bear__eyes">
+        <circle cx="572.438" cy="364.836" r="25.9698" fill="var(--base-coat)" />
+        <circle cx="223.403" cy="364.836" r="25.9698" fill="var(--base-coat)" />
+      </g>
+      <path
+        d="M464.755 411.776C464.755 438.167 433.036 467.871 397.753 467.871C362.47 467.871 330.751 438.167 330.751 411.776C330.751 385.385 362.47 372.302 397.753 372.302C433.036 372.302 464.755 385.385 464.755 411.776Z"
+        fill="var(--base-coat)"
+      />
+    </svg>
+  </body>
+</html>
+<script>
+  import "./_remote.js";
+</script>
